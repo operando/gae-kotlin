@@ -1,0 +1,35 @@
+buildscript {
+    ext.kotlin_version = '1.1.51'
+    ext.gae_sdk_version = '1.9.56'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.cloud.tools:appengine-gradle-plugin:1.3.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE"
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'com.google.cloud.tools.appengine'
+
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.springframework.boot:spring-boot-starter-web"
+}
+
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}
